@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neon Cyberpunk Design System */
+
+@layer base {
+  :root {
+    --background: 230 25% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 30% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 30% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 25% 7%;
+
+    --secondary: 300 100% 60%;
+    --secondary-foreground: 230 25% 7%;
+
+    --muted: 230 20% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 75 100% 50%;
+    --accent-foreground: 230 25% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 30% 20%;
+    --input: 230 30% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom neon colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-magenta: 300 100% 60%;
+    --neon-lime: 75 100% 50%;
+    --neon-orange: 25 100% 55%;
+    --neon-purple: 270 100% 65%;
+
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-magenta)));
+    --gradient-glow: linear-gradient(180deg, hsl(var(--neon-cyan) / 0.2), transparent);
+    --gradient-card: linear-gradient(145deg, hsl(230 30% 12%), hsl(230 30% 8%));
+
+    /* Shadows */
+    --shadow-neon: 0 0 30px hsl(var(--neon-cyan) / 0.3);
+    --shadow-magenta: 0 0 30px hsl(var(--neon-magenta) / 0.3);
+    --shadow-glow: 0 4px 40px hsl(var(--neon-cyan) / 0.2);
+
+    --sidebar-background: 230 25% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 230 30% 20%;
+    --sidebar-ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, pre, textarea.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: 
+      0 0 0 1px hsl(var(--neon-cyan) / 0.1),
+      0 4px 30px hsl(var(--background) / 0.5),
+      inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  .neon-border {
+    @apply relative;
+  }
+
+  .neon-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl pointer-events-none;
+    background: linear-gradient(135deg, hsl(var(--neon-cyan) / 0.5), hsl(var(--neon-magenta) / 0.5));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 1px;
+  }
+
+  .neon-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--neon-cyan) / 0.3),
+      0 0 40px hsl(var(--neon-cyan) / 0.1);
+  }
+
+  .magenta-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--neon-magenta) / 0.3),
+      0 0 40px hsl(var(--neon-magenta) / 0.1);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-magenta)));
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .toolbar-btn {
+    @apply p-2 rounded-lg transition-all duration-200 hover:bg-muted hover:text-primary;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .toolbar-btn {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+    }
+  }
+
+  .toolbar-btn:hover {
+    box-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  /* Ensure touch targets are at least 44x44px on mobile */
+  @media (max-width: 639px) {
+    button, .toolbar-btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  @media (min-width: 640px) {
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-muted/40 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full hover:bg-primary/70;
+    border: 1px solid hsl(var(--primary) / 0.2);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+
+  /* Firefox */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.5) hsl(var(--muted) / 0.4);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.5), 0 0 60px hsl(var(--neon-magenta) / 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -1,0 +1,11 @@
+# robots.txt for Markdown Magic
+# https://markdown-magic.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://markdown-magic.vercel.app/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
