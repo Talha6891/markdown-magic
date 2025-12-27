@@ -247,6 +247,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub Repository**: [https://github.com/Talha6891/markdown-magic](https://github.com/Talha6891/markdown-magic)
 - **Issues**: [GitHub Issues](https://github.com/Talha6891/markdown-magic/issues)
 
+![Markdown Magic Home Screen](./screenshot.png)
 ---
 
 **Made with ❤️ for 🌍**
